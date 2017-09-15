@@ -4,24 +4,37 @@
 						<ul>
 						<?php
 
+						if (!isset($_GET['module'])) {
+							?>
+							<li  class="current"><a href="index.php?module=homepage">Home</a></li>
 
-						if ($_GET['module']==="homepage"){
-								?>
-									<li  class="current"><a href="index.php?module=homepage">Home</a></li>
+							<li ><a href="index.php?module=photos">Formulario</a></li>
+<?php
+						} else {
+							if ($_GET['module']==="homepage"){
+									?>
+										<li  class="current"><a href="index.php?module=homepage">Home</a></li>
 
-									<li ><a href="index.php?module=photos">CRUD</a></li>
+										<li ><a href="index.php?module=photos">Formulario</a></li>
 
 
-								<?php
-							}
+									<?php
+								}elseif ($_GET['module']==="photos"){
+									?>
+										<li ><a href="index.php?module=homepage">Home</a></li>
 
-						if ($_GET['module']==="photos"){
-								?>
-									<li ><a href="index.php?module=homepage">Home</a></li>
+										<li class="current" ><a href="index.php?module=photos">Formulario</a></li>
+									<?php
+								} else {
+									?>
+										<li  class="current" ><a href="index.php?module=homepage">Home</a></li>
 
-									<li class="current" ><a href="index.php?module=photos">CRUD</a></li>
-								<?php
-							}
+										<li><a href="index.php?module=photos">Formulario</a></li>
+									<?php
+
+								}
+						}
+
 						?>
 						</ul>
 					</nav>

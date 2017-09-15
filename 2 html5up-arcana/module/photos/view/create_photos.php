@@ -1,3 +1,5 @@
+<br>
+
 <p align="center">Introduzca sus datos personales:</p>
 
 <div align="center" >
@@ -15,16 +17,17 @@
     <p align="center">Datos sobre la imagen:</p>
 
 
-      <input name="link" type="text" id="link" class="link" placeholder="Link" value="<?php echo $_POST?$_POST['link']:""; ?>"/> 
+      <input name="link" type="text" id="link" class="link" placeholder="Link" value="<?php echo $_POST?$_POST['link']:""; ?>"/>
 
     <br>
-    <span id="e_imgnombre" class="styerror"></span>
-    <input name="imgnombre" type="text" id="imgnombre" placeholder="Imagen nombre" class="imgnombre" value="<?php echo $_POST?$_POST['imgnombre']:""; ?>"/>
+
+    <input id="imgnombre" name="imgnombre" type="text" id="imgnombre" placeholder="Imagen nombre" class="imgnombre" value="<?php echo $_POST?$_POST['imgnombre']:""; ?>"/>
 
     <br>
-    <span id="e_descr" class="styerror"></span>
 
-    <textarea name="descr"  id="descr" class="descr" placeholder="Descripcion"  value="<?php echo $_POST?$_POST['descr']:""; ?>" ><?php echo $_POST?$_POST['descr']:""; ?></textarea>
+    <textarea name="descr"  id="descr" class="descr" placeholder="Descripcion"  value="<?php echo $_POST?$_POST['descr']:""; ?>" ></textarea>
+<br>
+    <input id="fecha" type="text" name="fecha" class="fecha" placeholder="Fecha de la foto" readonly="readonly" value="<?php echo $_POST?$_POST['fecha']:""; ?>" />
 
     <br>
     <div class="checkbox1">
