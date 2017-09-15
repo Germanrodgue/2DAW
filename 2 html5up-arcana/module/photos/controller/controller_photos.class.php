@@ -1,7 +1,7 @@
 <?php
 include("module/photos/model/functions.inc.php");
 
-
+//prueba
     if ($_POST) {
         $result = validate_user();
 
