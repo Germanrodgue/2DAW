@@ -6,7 +6,6 @@ include("utils/utils.inc.php");
 include("view/include/top_page.php");
 
 
-
 if (!isset($_GET['module'])) {
 		require_once("module/homepage/controller/controller_homepage.class.php");
 	}  else  if ( (isset($_GET['module'])) && (!isset($_GET['view'])) ) {
@@ -15,7 +14,7 @@ if (!isset($_GET['module'])) {
 	}
 
         if ( (isset($_GET['module'])) && (isset($_GET['view'])) ) {
-            require_once("module/".$_GET['module']."/view/".$_GET['view'].".php");
+            require_once("module/".$_GET['module']."/view/".$_GET['view'].".html");
         }
 
 include("view/include/footer.php");

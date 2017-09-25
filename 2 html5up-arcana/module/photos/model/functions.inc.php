@@ -25,19 +25,21 @@ if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
 }
 }
 
-	function validate_user(){
-		$error='';
+	function validate_photo($value){
+
+    $error = array();
+    $valido = true;
+
 		$filtro = array(
 			'link' => array(
-				'filter'=>FILTER_CALLBACK,
-				'options'=>'isImage'
+
 			),
 			'imgnombre' => array(
-				'filter'=>FILTER_VALIDATE_REGEXP,
+        'filter'=>FILTER_VALIDATE_REGEXP,
 				'options'=>array('regexp'=>'/^\D{3,30}$/')
 			),
 			'descr' => array(
-				'filter'=>FILTER_VALIDATE_REGEXP,
+        'filter'=>FILTER_VALIDATE_REGEXP,
 				'options'=>array('regexp'=>'|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|')
 			),
 			'tipo' => array(
@@ -46,34 +48,48 @@ if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
 			'location' => array(
 
 			),
-			'id' => array(
+			'location' => array(
+
+			),
+      'formato' => array(
 
 			),
 
 		);
 
-		$resultado=filter_input_array(INPUT_POST,$filtro);
-
+		$resultado=filter_var_array($value,$filtro);
+    $resultado['formato'] = $value['formato'];
 
 		/*if(isset($resultado['link'])){
 
 			$link = isImage($resultado['link']);
 		}*/
+    if ($resultado != null && $resultado) {
 
-		if(!$resultado['link']){
-			$error='El link debe ser correcto';
-		}elseif(!$resultado['imgnombre']){
-			$error='El nombre de la imagen debe ser correcto';
-		}elseif(!$resultado['tipo']){
-			$error='El tipo debe ser correcto';
-		}elseif(!$resultado['descr']){
-			$error='La descripcion debe tener entre 5 y 20 caracteres';
-		}else{
 
-			 return $return=array('resultado'=>true,'error'=>$error,'datos'=>$resultado);
-		};
-		return $return=array('resultado'=>false , 'error'=>$error,'datos'=>$resultado);
-	};
+          if (!$resultado['link']) {
+
+        			$error['link']='El link debe ser correcto';
+              $valido = false;
+          }
+          if (!$resultado['imgnombre']) {
+
+              $error['imgnombre']='El nombre de la imagen debe ser correcto';
+              $valido = false;
+          }
+          if (!$resultado['descr']) {
+
+              $error['descr']='La descripcion de la imagen debe ser correcto';
+              $valido = false;
+          }
+      } else {
+          $valido = false;
+      };
+
+      return $return = array('resultado' => $valido, 'error' => $error, 'datos' => $resultado);
+  }
+
+
 
 
 	function debug($array){
