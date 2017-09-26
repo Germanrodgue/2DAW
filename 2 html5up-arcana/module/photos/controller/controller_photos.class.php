@@ -33,7 +33,10 @@ function alta_photos() {
           'tipo' => $result['datos']['tipo'],
           'loc' => $result['datos']['location'],
           'formato' => $result['datos']['formato'],
-          'avatar' => $result_avatar['datos']
+          'avatar' => $result_avatar['datos'],
+          'country' => $result['datos']['country'],
+          'province' => $result['datos']['province'],
+          'city' => $result['datos']['city']
           );
 
         $arrValue = false;
@@ -42,9 +45,6 @@ function alta_photos() {
        // echo json_encode($arrValue);
        // die();
 
-
-
-        
         $mensaje = "Photo has been successfully registered";
        
         //redirigir a otra p�gina con los datos de $arrArgument y $mensaje
@@ -125,24 +125,58 @@ if ((isset($_GET["load_data"])) && ($_GET["load_data"] == true)) {
 }
 
 
-    /*    if ($result['resultado']) {
-            $arrArgument = array(
-                'link' => $result['datos']['link'],
-                'imgnombre' => $result['datos']['imgnombre'],
-                'descr' => $result['datos']['descr'],
-                'tipo' => $result['datos']['tipo'],
-                'loc' => $result['datos']['location'],
-                'formato' => $_POST['formato']
-                );
+   /////////////////////////////////////////////////// load_country
+if(  (isset($_GET["load_country"])) && ($_GET["load_country"] == true)  ){
+    $json = array();
 
-            $_SESSION['user'] = $arrArgument;
+    $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
+    $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2 html5up-arcana/module/photos/model/model/';
+    $json = loadModel($path_model, "photo_model", "obtain_countries", $url);
+    
+    if($json){
+        echo $json;
+        exit;
+    }else{
+        $json = "error";
+        echo $json;
+        exit;
+    }
+}
 
-            $callback = "index.php?module=photos&view=result_photos";
-                    redirect($callback);
+/////////////////////////////////////////////////// load_provinces
+if(  (isset($_GET["load_provinces"])) && ($_GET["load_provinces"] == true)  ){
+    $jsondata = array();
+    $json = array();
 
-        } else {
-            $error = $result['error'];
-                //debug($error);
-        }
+    $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2 html5up-arcana/module/photos/model/model//';
+    $json = loadModel($path_model, "photo_model", "obtain_provinces");
 
-    }*/
+    if($json){
+        $jsondata["provinces"] = $json;
+        echo json_encode($jsondata);
+        exit;
+    }else{
+        $jsondata["provinces"] = "error";
+        echo json_encode($jsondata);
+        exit;
+    }
+}
+
+/////////////////////////////////////////////////// load_cities
+if(  isset($_POST['idPoblac']) ){
+    $jsondata = array();
+    $json = array();
+
+    $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2 html5up-arcana/module/photos/model/model/';
+    $json = loadModel($path_model, "photo_model", "obtain_cities", $_POST['idPoblac']);
+
+    if($json){
+        $jsondata["cities"] = $json;
+        echo json_encode($jsondata);
+        exit;
+    }else{
+        $jsondata["cities"] = "error";
+        echo json_encode($jsondata);
+        exit;
+    }
+}

@@ -10,26 +10,21 @@
     <p align="center">Datos sobre la imagen:</p>
 
 
-    <input name="link" type="text" id="link" class="link"  value="" />
+    <input name="link" type="text" id="link" class="link" value="" />
 
     <br>
 
-    <input id="imgnombre" name="imgnombre" type="text" id="imgnombre" class="imgnombre" value=""
-    />
+    <input id="imgnombre" name="imgnombre" type="text" id="imgnombre" class="imgnombre" value="" />
 
     <br>
 
-    <textarea name="descr" id="descr" class="descr"  value=""></textarea>
+    <textarea name="descr" id="descr" class="descr" value=""></textarea>
     <br>
-    <input id="fecha" type="text" name="fecha" class="fecha"  readonly="readonly" value="" />
+    <input id="fecha" type="text" name="fecha" class="fecha" readonly="readonly" value="" />
 
-    <br>
-    
-       Formato:
-      RAW <input type="radio" id="tipo" name="tipo" value="RAW" class="checkbox1" checked>
-      JPEG <input type="radio" id="tipo"name="tipo" value="JPEG" class="checkbox1"> 
-      PNG <input type="radio" id="tipo" name="tipo" value="PNG" class="checkbox1">
-      <br/>
+    <br> Formato: RAW <input type="radio" id="tipo" name="tipo" value="RAW" class="checkbox1" checked> JPEG <input type="radio"
+      id="tipo" name="tipo" value="JPEG" class="checkbox1"> PNG <input type="radio" id="tipo" name="tipo" value="PNG" class="checkbox1">
+    <br/>
 
     <tr>
       <td>Localizacion: </td>
@@ -42,22 +37,54 @@
       </td>
     </tr>
     <br/>
-    
-      <td>Tipo de fotografia: </td>
-      <td>
-        <input type="checkbox" id="formato[]" name="formato[]" placeholder="formato" value="Retrato" class="checkbox2" checked/>Retrato
-        <input type="checkbox" id="formato[]" name="formato[]" placeholder="formato" value="Paisaje" class="checkbox2" />Paisaje
-        <input type="checkbox" id="formato[]" name="formato[]" placeholder="formato" value="Aerea" class="checkbox2" />Aerea
 
-    
-    <br>
-   
+    <td>Tipo de fotografia: </td>
+    <td>
+      <input type="checkbox" id="formato[]" name="formato[]" placeholder="formato" value="Retrato" class="checkbox2" checked/>Retrato
+      <input type="checkbox" id="formato[]" name="formato[]" placeholder="formato" value="Paisaje" class="checkbox2" />Paisaje
+      <input type="checkbox" id="formato[]" name="formato[]" placeholder="formato" value="Aerea" class="checkbox2" />Aerea
 
-  
-  <br/>
-  <div id="dropzone" class="dropzone"></div><br/>
-    <br><br>
 
-    <button type="button" id="submit_photo" name="submit_photo" class="boton" value="submit">Enviar</button>
+      <br>
+
+
+      <tr>
+        <td>Country: </td>
+        <td id="error_country">
+          <select name="country" id="country">
+      <option selected>Select country</option>
+    </select>
+          <div></div>
+        </td>
+      </tr>
+      <tr>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>Province: </td>
+        <td id="error_province">
+          <select name="province" id="province">
+      <option selected>Select province</option>
+    </select>
+          <div></div>
+        </td>
+      </tr>
+      <tr>
+        <td> </td>
+      </tr>
+      <tr>
+        <td>City: </td>
+        <td id="error_city">
+          <select name="city" id="city">
+      <option selected>Select city</option>
+    </select>
+          <div></div>
+        </td>
+
+        <br/>
+        <div id="dropzone" class="dropzone"></div><br/>
+        <br><br>
+
+        <button type="button" id="submit_photo" name="submit_photo" class="boton" value="submit">Enviar</button>
   </form>
 </div>

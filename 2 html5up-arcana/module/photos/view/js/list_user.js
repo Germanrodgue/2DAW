@@ -42,6 +42,9 @@ alert(data.user.formato[i]);
   for(var i =0;i < data.user.formato.length;i++){
   document.getElementById("formato").innerHTML += " - "+data.user.formato[i];
     }
+  document.getElementById("countries").innerHTML = "Country: " + data.user.country;
+  document.getElementById("province").innerHTML = "Province: " + data.user.province ;
+  document.getElementById("city").innerHTML = "City: " + data.user.city ;
 
 
 }
