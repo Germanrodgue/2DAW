@@ -42,9 +42,9 @@ alert(data.user.formato[i]);
   for(var i =0;i < data.user.formato.length;i++){
   document.getElementById("formato").innerHTML += " - "+data.user.formato[i];
     }
-  document.getElementById("countries").innerHTML = "Country: " + data.user.country;
-  document.getElementById("province").innerHTML = "Province: " + data.user.province ;
-  document.getElementById("city").innerHTML = "City: " + data.user.city ;
+  document.getElementById("paises").innerHTML = "Pais: " + data.user.pais;
+  document.getElementById("provincia").innerHTML = "Provincia: " + data.user.provincia ;
+  document.getElementById("ciudad").innerHTML = "Ciudad: " + data.user.ciudad ;
 
 
 }

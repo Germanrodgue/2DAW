@@ -34,9 +34,9 @@ function alta_photos() {
           'loc' => $result['datos']['location'],
           'formato' => $result['datos']['formato'],
           'avatar' => $result_avatar['datos'],
-          'country' => $result['datos']['country'],
-          'province' => $result['datos']['province'],
-          'city' => $result['datos']['city']
+          'pais' => $result['datos']['pais'],
+          'provincia' => $result['datos']['provincia'],
+          'ciudad' => $result['datos']['ciudad']
           );
 
         $arrValue = false;
@@ -126,12 +126,12 @@ if ((isset($_GET["load_data"])) && ($_GET["load_data"] == true)) {
 
 
    /////////////////////////////////////////////////// load_country
-if(  (isset($_GET["load_country"])) && ($_GET["load_country"] == true)  ){
+if(  (isset($_GET["load_pais"])) && ($_GET["load_pais"] == true)  ){
     $json = array();
 
     $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
     $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2 html5up-arcana/module/photos/model/model/';
-    $json = loadModel($path_model, "photo_model", "obtain_countries", $url);
+    $json = loadModel($path_model, "photo_model", "obtener_pais", $url);
     
     if($json){
         echo $json;
@@ -144,19 +144,19 @@ if(  (isset($_GET["load_country"])) && ($_GET["load_country"] == true)  ){
 }
 
 /////////////////////////////////////////////////// load_provinces
-if(  (isset($_GET["load_provinces"])) && ($_GET["load_provinces"] == true)  ){
+if(  (isset($_GET["load_provincia"])) && ($_GET["load_provincia"] == true)  ){
     $jsondata = array();
     $json = array();
 
     $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2 html5up-arcana/module/photos/model/model//';
-    $json = loadModel($path_model, "photo_model", "obtain_provinces");
+    $json = loadModel($path_model, "photo_model", "obtener_provincia");
 
     if($json){
-        $jsondata["provinces"] = $json;
+        $jsondata["provincia"] = $json;
         echo json_encode($jsondata);
         exit;
     }else{
-        $jsondata["provinces"] = "error";
+        $jsondata["provincia"] = "error";
         echo json_encode($jsondata);
         exit;
     }
@@ -168,14 +168,14 @@ if(  isset($_POST['idPoblac']) ){
     $json = array();
 
     $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2 html5up-arcana/module/photos/model/model/';
-    $json = loadModel($path_model, "photo_model", "obtain_cities", $_POST['idPoblac']);
+    $json = loadModel($path_model, "photo_model", "obtener_ciudad", $_POST['idPoblac']);
 
     if($json){
-        $jsondata["cities"] = $json;
+        $jsondata["ciudad"] = $json;
         echo json_encode($jsondata);
         exit;
     }else{
-        $jsondata["cities"] = "error";
+        $jsondata["ciudad"] = "error";
         echo json_encode($jsondata);
         exit;
     }

@@ -107,6 +107,7 @@ $(document).ready(function () {
                 $("#link").val(response.user.link);
                 $("#imgnombre").val(response.user.imgnombre);
                 $("#descr").val(response.user.descr);
+                $("#fecha").val(response.user.fecha);
             }
         }, "json");
 
@@ -173,36 +174,36 @@ $(document).ready(function () {
 
     load_countries_v1();
     
-    $("#province").empty();
-    $("#province").append('<option value="" selected="selected">Select province</option>');
-    $("#province").prop('disabled', true);
-    $("#city").empty();
-    $("#city").append('<option value="" selected="selected">Select city</option>');
-    $("#city").prop('disabled', true);
+    $("#provincia").empty();
+    $("#provincia").append('<option value="" selected="selected">Selecciona provincia</option>');
+    $("#provincia").prop('disabled', true);
+    $("#ciudad").empty();
+    $("#ciudad").append('<option value="" selected="selected">Selecciona ciudad</option>');
+    $("#ciudad").prop('disabled', true);
 
-    $("#country").change(function() {
-		var country = $(this).val();
-		var province = $("#province");
-		var city = $("#city");
+    $("#pais").change(function() {
+		var pais = $(this).val();
+		var provincia = $("#provincia");
+		var ciudad = $("#ciudad");
 
-		if(country !== 'ES'){
-	         province.prop('disabled', true);
-	         city.prop('disabled', true);
-	         $("#province").empty();
-		     $("#city").empty();
+		if(pais !== 'ES'){
+            provincia.prop('disabled', true);
+	         ciudad.prop('disabled', true);
+	         $("#provincia").empty();
+		     $("#ciudad").empty();
 		}else{
-	         province.prop('disabled', false);
-	         city.prop('disabled', false);
+            provincia.prop('disabled', false);
+            ciudad.prop('disabled', false);
 	         load_provinces_v1();
 		}//fi else
 	});
 
-	$("#province").change(function() {
+	$("#provincia").change(function() {
 		var prov = $(this).val();
 		if(prov > 0){
 			load_cities_v1(prov);
 		}else{
-			$("#city").prop('disabled', false);
+			$("#ciudad").prop('disabled', false);
 		}
 	});
 
@@ -229,9 +230,9 @@ function validate_photos() {
             j++;
         }
     }
-    var country = document.getElementById('country').value;
-    var province = document.getElementById('province').value;
-    var city = document.getElementById('city').value;
+    var pais = document.getElementById('pais').value;
+    var provincia = document.getElementById('provincia').value;
+    var ciudad = document.getElementById('ciudad').value;
     
 
 
@@ -263,23 +264,23 @@ function validate_photos() {
         $("#descr").focus().after("<span class='error'>error format date (mm/dd/yyyy)</span>");
         result = false;
         return false;
-    } else if ($("#fecha").val() == "" || $("#descr").val() == "Fecha de la foto") {
-        $("#descr").focus().after("<span class='error'>Introduce una fecha</span>");
+    } else if ($("#fecha").val() == "" || $("#fecha").val() == "Introduce una fecha") {
+        $("#fecha").focus().after("<span class='error'>Introduce una fecha</span>");
         result = false;
         return false;
     }
-    if ($("#country").val() === "" || $("#country").val() === "Select country" || $("#country").val() === null) {
-        $("#country").focus().after("<span class='error'>Select one country</span>");
+    if ($("#pais").val() === "" || $("#pais").val() === "Selecciona un pais" || $("#pais").val() === null) {
+        $("#pais").focus().after("<span class='error'>Selecciona un pais</span>");
         return false;
     }
 
-    if ($("#province").val() === "" || $("#province").val() === "Select province") {
-        $("#province").focus().after("<span class='error'>Select one province</span>");
+    if ($("#provincia").val() === "" || $("#provincia").val() === "Selecciona provincia") {
+        $("#provincia").focus().after("<span class='error'>Selecciona una provincia</span>");
         return false;
     }
 
-    if ($("#city").val() === "" || $("#city").val() === "Select city") {
-        $("#city").focus().after("<span class='error'>Select one city</span>");
+    if ($("#ciudad").val() === "" || $("#ciudad").val() === "Selecciona una ciudad") {
+        $("#ciudad").focus().after("<span class='error'>Selecciona una ciudad</span>");
         return false;
     }
 
@@ -287,20 +288,20 @@ function validate_photos() {
     //Si ha ido todo bien, se envian los datos al servidor
     if (result) {
 
-        if (province === null) {
-            province = 'default_province';
-        }else if (province.length === 0) {
-            province = 'default_province';
-        }else if (province === 'Select province') {
-            return 'default_province';
+        if (provincia === null) {
+            provincia = 'default_provincia';
+        }else if (provincia.length === 0) {
+            provincia = 'default_provincia';
+        }else if (provincia === 'Selecciona provincia') {
+            return 'default_provincia';
         }
 
-        if (city === null) {
-            city = 'default_city';
-        }else if (city.length === 0) {
-            city = 'default_city';
-        }else if (city === 'Select city') {
-            return 'default_city';
+        if (ciudad === null) {
+            ciudad = 'default_ciudad';
+        }else if (ciudad.length === 0) {
+            ciudad = 'default_ciudad';
+        }else if (ciudad === 'Selecciona una ciudad') {
+            return 'default_ciudad';
         }
 
         var data = {
@@ -312,9 +313,9 @@ function validate_photos() {
             "tipo": tipo,
             "formato": formato,
             "location": location,
-            "country": country,
-            "province": province,
-            "city": city
+            "pais": pais,
+            "provincia": provincia,
+            "ciudad": ciudad
         };
 
         var data_photos_JSON = JSON.stringify(data);
@@ -367,11 +368,11 @@ function validate_photos() {
 
 function load_countries_v2(cad) {
     $.getJSON( cad, function(data) {
-      $("#country").empty();
-      $("#country").append('<option value="" selected="selected">Select country</option>');
+      $("#pais").empty();
+      $("#pais").append('<option value="" selected="selected">Selecciona pais</option>');
 
       $.each(data, function (i, valor) {
-        $("#country").append("<option value='" + valor.sISOCode + "'>" + valor.sName + "</option>");
+        $("#pais").append("<option value='" + valor.sISOCode + "'>" + valor.sName + "</option>");
       });
     })
     .fail(function() {
@@ -380,14 +381,14 @@ function load_countries_v2(cad) {
 }
 
 function load_countries_v1() {
-    $.get( "module/photos/controller/controller_photos.class.php?load_country=true",
+    $.get( "module/photos/controller/controller_photos.class.php?load_pais=true",
         function( response ) {
            // console.log(response);
             if(response === 'error'){
                 
                 load_countries_v2("resources/ListOfCountryNamesByName.json");
             }else{
-                load_countries_v2("module/photos/controller/controller_photos.class.php?load_country=true"); //oorsprong.org
+                load_countries_v2("module/photos/controller/controller_photos.class.php?load_pais=true"); //oorsprong.org
             }
     })
     .fail(function(response) {
@@ -398,13 +399,13 @@ function load_countries_v1() {
 
 function load_provinces_v2() {
     $.get("resources/provinciasypoblaciones.xml", function (xml) {
-	    $("#province").empty();
-	    $("#province").append('<option value="" selected="selected">Select province</option>');
+	    $("#provincia").empty();
+	    $("#provincia").append('<option value="" selected="selected">Selecciona provincia</option>');
 
         $(xml).find("provincia").each(function () {
             var id = $(this).attr('id');
             var name = $(this).find('nombre').text();
-            $("#province").append("<option value='" + id + "'>" + name + "</option>");
+            $("#provincia").append("<option value='" + id + "'>" + name + "</option>");
         });
     })
     .fail(function() {
@@ -413,25 +414,25 @@ function load_provinces_v2() {
 }
 
 function load_provinces_v1() { //provinciasypoblaciones.xml - xpath
-    $.get( "module/photos/controller/controller_photos.class.php?load_provinces=true",
+    $.get( "module/photos/controller/controller_photos.class.php?load_provincia=true",
         function( response ) {
-          $("#province").empty();
-	        $("#province").append('<option value="" selected="selected">Select province</option>');
+          $("#provincia").empty();
+	        $("#provincia").append('<option value="" selected="selected">Selecciona provincia</option>');
 
             //alert(response);
         var json = JSON.parse(response);
-		    var provinces=json.provinces;
+		    var provincia=json.provincia;
 		    //alert(provinces);
 		    //console.log(provinces);
 
 		    //alert(provinces[0].id);
 		    //alert(provinces[0].nombre);
 
-            if(provinces === 'error'){
+            if(provincia === 'error'){
                 load_provinces_v2();
             }else{
-                for (var i = 0; i < provinces.length; i++) {
-        		    $("#province").append("<option value='" + provinces[i].id + "'>" + provinces[i].nombre + "</option>");
+                for (var i = 0; i < provincia.length; i++) {
+        		    $("#provincia").append("<option value='" + provincia[i].id + "'>" + provincia[i].nombre + "</option>");
     		    }
             }
     })
@@ -442,12 +443,12 @@ function load_provinces_v1() { //provinciasypoblaciones.xml - xpath
 
 function load_cities_v2(prov) {
     $.get("resources/provinciasypoblaciones.xml", function (xml) {
-		$("#city").empty();
-	    $("#city").append('<option value="" selected="selected">Select city</option>');
+		$("#pais").empty();
+	    $("#pais").append('<option value="" selected="selected">Selecciona pais</option>');
 
 		$(xml).find('provincia[id=' + prov + ']').each(function(){
     		$(this).find('localidad').each(function(){
-    			 $("#city").append("<option value='" + $(this).text() + "'>" + $(this).text() + "</option>");
+    			 $("#pais").append("<option value='" + $(this).text() + "'>" + $(this).text() + "</option>");
     		});
         });
 	})
@@ -461,19 +462,19 @@ function load_cities_v1(prov) { //provinciasypoblaciones.xml - xpath
 	$.post("module/photos/controller/controller_photos.class.php", datos, function(response) {
 	    //alert(response);
         var json = JSON.parse(response);
-		var cities=json.cities;
+		var ciudad=json.ciudad;
 		//alert(poblaciones);
 		//console.log(poblaciones);
 		//alert(poblaciones[0].poblacion);
 
-		$("#city").empty();
-	    $("#city").append('<option value="" selected="selected">Select city</option>');
+		$("#ciudad").empty();
+	    $("#ciudad").append('<option value="" selected="selected">Selecciona ciudad</option>');
 
-        if(cities === 'error'){
+        if(ciudad === 'error'){
             load_cities_v2(prov);
         }else{
-            for (var i = 0; i < cities.length; i++) {
-        		$("#city").append("<option value='" + cities[i].poblacion + "'>" + cities[i].poblacion + "</option>");
+            for (var i = 0; i < ciudad.length; i++) {
+        		$("#ciudad").append("<option value='" + ciudad[i].poblacion + "'>" + ciudad[i].poblacion + "</option>");
     		}
         }
 	})

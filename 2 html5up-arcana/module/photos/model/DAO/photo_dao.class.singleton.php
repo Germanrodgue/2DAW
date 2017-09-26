@@ -27,11 +27,11 @@ class photoDAO {
         foreach ($formato as $indice) {
             $form=$form."$indice:";
         }
-        $country = $arrArgument['country'];
-        $province = $arrArgument['province'];
-        $city = $arrArgument['city'];
+        $country = $arrArgument['pais'];
+        $province = $arrArgument['provincia'];
+        $city = $arrArgument['ciudad'];
 
-        $sql = "INSERT INTO usuarios (fecha, tipo, link, imgnombre,"
+        $sql = "INSERT INTO fotografia (fecha, tipo, link, imgnombre,"
                 . " Descripcion, formato, Localizacion, avatar, country, province, city"
                 . " ) VALUES ('$fecha', '$tipo', '$link',"
                 . " '$imgnombre', '$descr', '$form', '$loc', '$avatar', '$country', '$province', '$city')";
@@ -39,7 +39,7 @@ class photoDAO {
         return $db->ejecutar($sql);
     }
 
-    public function obtain_countries_DAO($url){
+    public function obtener_pais_DAO($url){
         $ch = curl_init();
         curl_setopt ($ch, CURLOPT_URL, $url);
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -56,7 +56,7 @@ class photoDAO {
         }
   }
 
-  public function obtain_provinces_DAO(){
+  public function obtener_provincia_DAO(){
         $json = array();
         $tmp = array();
 
@@ -75,7 +75,7 @@ class photoDAO {
 
   }
 
-  public function obtain_cities_DAO($arrArgument){
+  public function obtener_ciudad_DAO($arrArgument){
         $json = array();
         $tmp = array();
 

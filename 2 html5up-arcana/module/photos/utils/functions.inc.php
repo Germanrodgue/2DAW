@@ -60,9 +60,9 @@ if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
 		$resultado=filter_var_array($value,$filtro);
         $resultado['formato'] = $value['formato'];
         $resultado['tipo'] = $value['tipo'];
-        $resultado['country'] = $value['country'];
-        $resultado['province'] = $value['province'];
-        $resultado['city'] = $value['city'];
+        $resultado['pais'] = $value['pais'];
+        $resultado['provincia'] = $value['provincia'];
+        $resultado['ciudad'] = $value['ciudad'];
 		/*if(isset($resultado['link'])){
 
 			$link = isImage($resultado['link']);
