@@ -4,32 +4,34 @@ jQuery.fn.fill_or_clean = function () {
     this.each(function () {
 
 
-        if ($("#link").attr("value") == "") {
-            $("#link").attr("value", "Introduce link");
+        if ($("#link").val() == "") {
+            $("#link").val("Introduce un link");
+
             $("#link").focus(function () {
-                if ($("#link").attr("value") == "Introduce link") {
-                    $("#link").attr("value", "");
+                if ($("#link").val("") == "Introduce un link") {
+                    $("#link").val("");
                 }
             });
         }
         $("#link").blur(function () { //Onblur se activa cuando el usuario retira el foco
-            if ($("#link").attr("value") == "") {
-                $("#link").attr("value", "Introduce link");
+            if ($("#link").val() == "") {
+                $("#link").val("Introduce un link");
             }
         });
 
 
-        if ($("#imgnombre").attr("value") == "") {
-            $("#imgnombre").attr("value", "Introduce un nombre de imagen");
+        if ($("#imgnombre").val() == "") {
+            $("#imgnombre").val("Introduce un nombre de imagen");
+
             $("#imgnombre").focus(function () {
-                if ($("#imgnombre").attr("value") == "Introduce un nombre de imagen") {
-                    $("#imgnombre").attr("value", "");
+                if ($("#imgnombre").val("") == "Introduce un nombre de imagen") {
+                    $("#imgnombre").val("");
                 }
             });
         }
         $("#imgnombre").blur(function () { //Onblur se activa cuando el usuario retira el foco
-            if ($("#imgnombre").attr("value") == "") {
-                $("#imgnombre").attr("value", "Introduce un nombre de imagen");
+            if ($("#imgnombre").val() == "") {
+                $("#imgnombre").val("Introduce un nombre de imagen");
             }
         });
 
@@ -50,20 +52,21 @@ jQuery.fn.fill_or_clean = function () {
         });
 
 
-        if ($("#fecha").attr("value") == "") {
-            $("#fecha").attr("value", "Introduce una fecha");
+        if ($("#fecha").val() == "") {
+            $("#fecha").val("Introduce una fecha");
+
             $("#fecha").focus(function () {
-                if ($("#fecha").attr("value") == "Introduce una fecha") {
-                    $("#fecha").attr("value", "");
+                if ($("#fecha").val("") == "Introduce una fecha") {
+                    $("#fecha").val("");
                 }
             });
         }
         $("#fecha").blur(function () { //Onblur se activa cuando el usuario retira el foco
-            if ($("#fecha").attr("value") == "") {
-                $("#fecha").attr("value", "Introduce una fecha");
+            if ($("#fecha").val() == "") {
+                $("#fecha").val("Introduce una fecha");
             }
         });
-    }); //each
+    });
     return this;
 }; //function
 //Solution to : "Uncaught Error: Dropzone already attached."
@@ -180,7 +183,7 @@ function validate_photos() {
     var link = document.getElementById('link').value;
     var imgnombre = document.getElementById('imgnombre').value;
     var descr = document.getElementById('descr').value;
-    //var formato = document.getElementById('formato[]').value;
+    var fecha = document.getElementById('fecha').value;
     var tipo = document.getElementById('tipo').value;
     var location = document.getElementById('location').value;
     var formato = [];
@@ -206,20 +209,24 @@ function validate_photos() {
         $("#link").focus().after("<span class='error'>Introduce link</span>");
         result = false;
         return false;
-    } else if ($("#imgnombre").val() == "" || $("#imgnombre").val() == "Introduce last name") {
-        $("#imgnombre").focus().after("<span class='error'>Introduce last name</span>");
+    } else if ($("#imgnombre").val() == "" || $("#imgnombre").val() == "Introduce un nombre") {
+        $("#imgnombre").focus().after("<span class='error'>Introduce un nombre</span>");
         result = false;
         return false;
     } else if (!string_reg.test($("#imgnombre").val())) {
-        $("#imgnombre").focus().after("<span class='error'>Last name must be 2 to 30 letters</span>");
+        $("#imgnombre").focus().after("<span class='error'>El nombre debe ser mayor de 3 y menor de 30 caracteres</span>");
         result = false;
         return false;
-    } else if ($("#descr").val() == "" || $("#descr").val() == "Introduce date of birth") {
-        $("#descr").focus().after("<span class='error'>Introduce date of birth</span>");
+    } else if ($("#descr").val() == "" || $("#descr").val() == "Introduce una descripcion") {
+        $("#descr").focus().after("<span class='error'>Introduce una descripcion</span>");
         result = false;
         return false;
     } else if (!descr_reg.test($("#descr").val())) {
         $("#descr").focus().after("<span class='error'>error format date (mm/dd/yyyy)</span>");
+        result = false;
+        return false;
+    } else if ($("#fecha").val() == "" || $("#descr").val() == "Fecha de la foto") {
+        $("#descr").focus().after("<span class='error'>Introduce una fecha</span>");
         result = false;
         return false;
     }
@@ -231,6 +238,7 @@ function validate_photos() {
             "link": link,
             "imgnombre": imgnombre,
             "descr": descr,
+            "fecha": fecha,
             "formato": formato,
             "tipo": tipo,
             "formato": formato,

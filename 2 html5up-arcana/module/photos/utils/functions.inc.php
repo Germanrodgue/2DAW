@@ -35,12 +35,12 @@ if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
 
 			),
 			'imgnombre' => array(
-        'filter'=>FILTER_VALIDATE_REGEXP,
-				'options'=>array('regexp'=>'/^\D{3,30}$/')
+            'filter'=>FILTER_VALIDATE_REGEXP,
+			'options'=>array('regexp'=>'/^\D{3,30}$/')
 			),
 			'descr' => array(
-        'filter'=>FILTER_VALIDATE_REGEXP,
-				'options'=>array('regexp'=>'|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|')
+            'filter'=>FILTER_VALIDATE_REGEXP,
+			'options'=>array('regexp'=>'|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|')
 			),
 			'tipo' => array(
 
@@ -48,18 +48,18 @@ if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
 			'location' => array(
 
 			),
-			'location' => array(
+			'fecha' => array(
 
 			),
-      'formato' => array(
+             'formato' => array(
 
 			),
 
 		);
 
 		$resultado=filter_var_array($value,$filtro);
-    $resultado['formato'] = $value['formato'];
-
+        $resultado['formato'] = $value['formato'];
+        $resultado['tipo'] = $value['tipo'];
 		/*if(isset($resultado['link'])){
 
 			$link = isImage($resultado['link']);
@@ -79,7 +79,7 @@ if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
           }
           if (!$resultado['descr']) {
 
-              $error['descr']='La descripcion de la imagen debe ser correcto';
+              $error['descr']='La descripcion de la imagen debe ser correcta';
               $valido = false;
           }
       } else {

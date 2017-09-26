@@ -1,8 +1,8 @@
 <?php
 session_start();
-include ($_SERVER['DOCUMENT_ROOT'] . "/2 html5up-arcana/module/photos/model/functions.inc.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/2 html5up-arcana/module/photos/utils/functions.inc.php");
 include ($_SERVER['DOCUMENT_ROOT'] . "/2 html5up-arcana/utils/upload.php");
-
+include ($_SERVER['DOCUMENT_ROOT'] . "/2 html5up-arcana/utils/common.inc.php");
 
 if ((isset($_GET["upload"])) && ($_GET["upload"] == true)) {
     $result_avatar = upload_files();
@@ -29,14 +29,24 @@ function alta_photos() {
           'link' => $result['datos']['link'],
           'imgnombre' => $result['datos']['imgnombre'],
           'descr' => $result['datos']['descr'],
+          'fecha' => $result['datos']['fecha'],
           'tipo' => $result['datos']['tipo'],
           'loc' => $result['datos']['location'],
           'formato' => $result['datos']['formato'],
           'avatar' => $result_avatar['datos']
           );
 
-        $mensaje = "User has been successfully registered";
+        $arrValue = false;
+        $path_model = $_SERVER['DOCUMENT_ROOT'] . '/2 html5up-arcana/module/photos/model/model/';
+        $arrValue = loadModel($path_model, "photo_model", "create_photo", $arrArgument);
+       // echo json_encode($arrValue);
+       // die();
 
+
+
+        
+        $mensaje = "Photo has been successfully registered";
+       
         //redirigir a otra p�gina con los datos de $arrArgument y $mensaje
         $_SESSION['user'] = $arrArgument;
 
