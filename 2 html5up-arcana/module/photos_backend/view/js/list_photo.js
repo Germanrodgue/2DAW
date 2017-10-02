@@ -1,8 +1,8 @@
-function load_users() {
-    var jqxhr = $.get("module/photos/controller/controller_photos.class.php?load=true", function (data) {
+function load_photo() {
+    var jqxhr = $.get("module/photos_backend/controller/controller_photos.class.php?load=true", function (data) {
         var json = JSON.parse(data);
         console.log(json);
-        pintar_user(json);
+        pintar_photo(json);
         //alert( "success" );
     }).done(function () {
         //alert( "second success" );
@@ -17,10 +17,10 @@ function load_users() {
 }
 
 $(document).ready(function () {
-    load_users();
+    load_photo();
 });
 
-function pintar_user(data) {
+function pintar_photo(data) {
 
 
 /*  document.getElementById("formato").innerHTML = "Formato: "
@@ -43,8 +43,8 @@ alert(data.user.formato[i]);
   document.getElementById("formato").innerHTML += " - "+data.user.formato[i];
     }
   document.getElementById("paises").innerHTML = "Pais: " + data.user.pais;
-  document.getElementById("provincia").innerHTML = "Provincia: " + data.user.provincia ;
-  document.getElementById("ciudad").innerHTML = "Ciudad: " + data.user.ciudad ;
+  document.getElementById("provincias").innerHTML = "Provincia: " + data.user.provincia ;
+  document.getElementById("ciudades").innerHTML = "Ciudad: " + data.user.ciudad ;
 
 
 }

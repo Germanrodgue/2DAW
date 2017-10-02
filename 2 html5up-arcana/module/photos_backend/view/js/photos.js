@@ -2,24 +2,28 @@
 
 jQuery.fn.fill_or_clean = function () {
     this.each(function () {
-
+       
 
         if ($("#link").val() == "") {
             $("#link").val("Introduce un link");
 
             $("#link").focus(function () {
+               
                 if ($("#link").val("") == "Introduce un link") {
                     $("#link").val("");
                 }
-            });
-        }
-        $("#link").blur(function () { //Onblur se activa cuando el usuario retira el foco
+                      
+                
+            }); 
+        } 
+        $("#link").blur(function () { 
+          
             if ($("#link").val() == "") {
                 $("#link").val("Introduce un link");
-            }
+            } 
         });
-
-
+      
+    
         if ($("#imgnombre").val() == "") {
             $("#imgnombre").val("Introduce un nombre de imagen");
 
@@ -29,7 +33,7 @@ jQuery.fn.fill_or_clean = function () {
                 }
             });
         }
-        $("#imgnombre").blur(function () { //Onblur se activa cuando el usuario retira el foco
+        $("#imgnombre").blur(function () { 
             if ($("#imgnombre").val() == "") {
                 $("#imgnombre").val("Introduce un nombre de imagen");
             }
@@ -45,7 +49,7 @@ jQuery.fn.fill_or_clean = function () {
                 }
             });
         }
-        $("#descr").blur(function () { //Onblur se activa cuando el usuario retira el foco
+        $("#descr").blur(function () { 
             if ($("#descr").val() == "") {
                 $("#descr").val("Introduce una descripcion");
             }
@@ -61,7 +65,7 @@ jQuery.fn.fill_or_clean = function () {
                 }
             });
         }
-        $("#fecha").blur(function () { //Onblur se activa cuando el usuario retira el foco
+        $("#fecha").blur(function () { 
             if ($("#fecha").val() == "") {
                 $("#fecha").val("Introduce una fecha");
             }
@@ -93,7 +97,7 @@ $(document).ready(function () {
     });
 
     //Control de seguridad para evitar que al volver atrás de la pantalla results a create, no nos imprima los datos
-    $.get("module/photos/controller/controller_photos.class.php?load_data=true",
+    $.get("module/photos_backend/controller/controller_photos.class.php?load_data=true",
         function (response) {
             //alert(response.user);
             if (response.user === "") {
@@ -143,7 +147,7 @@ $(document).ready(function () {
             var name = file.name;
             $.ajax({
                 type: "POST",
-                url: "module/photos/controller/controller_photos.class.php?delete=true",
+                url: "module/photos_backend/controller/controller_photos.class.php?delete=true",
                 data: "filename=" + name,
                 success: function (data) {
                     $("#progress").hide();
@@ -321,7 +325,7 @@ function validate_photos() {
 
         var data_photos_JSON = JSON.stringify(data);
 
-        $.post('module/photos/controller/controller_photos.class.php', {
+        $.post('module/photos_backend/controller/controller_photos.class.php', {
                 alta_photos_json: data_photos_JSON
             },
             function (response) {
@@ -382,14 +386,14 @@ function load_countries_v2(cad) {
 }
 
 function load_countries_v1() {
-    $.get( "module/photos/controller/controller_photos.class.php?load_pais=true",
+    $.get( "module/photos_backend/controller/controller_photos.class.php?load_pais=true",
         function( response ) {
            // console.log(response);
             if(response === 'error'){
                 
                 load_countries_v2("resources/ListOfCountryNamesByName.json");
             }else{
-                load_countries_v2("module/photos/controller/controller_photos.class.php?load_pais=true"); //oorsprong.org
+                load_countries_v2("module/photos_backend/controller/controller_photos.class.php?load_pais=true"); //oorsprong.org
             }
     })
     .fail(function(response) {
@@ -415,7 +419,7 @@ function load_provinces_v2() {
 }
 
 function load_provinces_v1() { //provinciasypoblaciones.xml - xpath
-    $.get( "module/photos/controller/controller_photos.class.php?load_provincia=true",
+    $.get( "module/photos_backend/controller/controller_photos.class.php?load_provincia=true",
         function( response ) {
           $("#provincia").empty();
 	        $("#provincia").append('<option value="" selected="selected">Selecciona provincia</option>');
@@ -460,7 +464,7 @@ function load_cities_v2(prov) {
 
 function load_cities_v1(prov) { //provinciasypoblaciones.xml - xpath
     var datos = { idPoblac : prov  };
-	$.post("module/photos/controller/controller_photos.class.php", datos, function(response) {
+	$.post("module/photos_backend/controller/controller_photos.class.php", datos, function(response) {
 	    //alert(response);
         var json = JSON.parse(response);
 		var ciudad=json.ciudad;

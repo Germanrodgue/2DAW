@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include("view/include/header.php");
 include("view/include/menu.php");
 include("utils/utils.inc.php");
