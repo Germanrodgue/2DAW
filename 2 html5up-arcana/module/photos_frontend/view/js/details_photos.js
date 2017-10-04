@@ -1,50 +1,26 @@
-function load_photo() {
-    var jqxhr = $.get("module/photos_backend/controller/controller_photos.class.php?load=true", function (data) {
+function load_photos() {
+    var jqxhr = $.get("module/photos_frontend/controller/controller_photos.class.php?load_details_1=true", function (data) {
         var json = JSON.parse(data);
-        console.log(json);
-        pintar_photo(json);
-        //alert( "success" );
-    }).done(function () {
-        //alert( "second success" );
-    }).fail(function () {
-        //alert( "error" );
-    }).always(function () {
-        //alert( "finished" );
-    });
-    jqxhr.always(function () {
-        //alert( "second finished" );
-    });
+        pintar_photo(json.photodetails)
+    })
 }
 
 $(document).ready(function () {
-    load_photo();
+    load_photos();
 });
 
 function pintar_photo(data) {
-
-
-/*  document.getElementById("formato").innerHTML = "Formato: "
-
-  for(var i =0;i < data.user.formato.length;i++){
-alert(data.user.formato[i]);
-    document.getElementById("formato").innerHTML = document.getElementById("formato").innerHTML + data.user.formato[i] ;
-
-  }*/
-  document.getElementById("link").innerHTML = "Link: " + data.user.link;
-  document.getElementById("imgnombre").innerHTML = "Nombre de la imagen: " + data.user.imgnombre ;
-  document.getElementById("fecha").innerHTML = "Fecha: " + data.user.fecha ;
-  document.getElementById("descr").innerHTML = "Descripcion: " + data.user.descr ;
-//  document.getElementById("formato").innerHTML = "Formato: " + data.user.formato;
-  document.getElementById("tipo").innerHTML = "Tipo: " + data.user.tipo;
-  document.getElementById("location").innerHTML = "Localizacion: " + data.user.loc;
-  document.getElementById("avatar").src=data.user.avatar;
-  document.getElementById("formato").innerHTML = "Formato: ";
-  for(var i =0;i < data.user.formato.length;i++){
-  document.getElementById("formato").innerHTML += " - "+data.user.formato[i];
+      document.getElementById("link").innerHTML = "Link: " + data[0].link;
+      document.getElementById("imgnombre").innerHTML = "Nombre de la imagen: " + data[0].imgnombre ;
+      document.getElementById("fecha").innerHTML = "Fecha: " + data[0].fecha ;
+      document.getElementById("descr").innerHTML = "Descripcion: " + data[0].Descripcion ;
+      document.getElementById("tipo").innerHTML = "Tipo: " + data[0].tipo;
+      document.getElementById("location").innerHTML = "Localizacion: " + data[0].Localizacion;
+      document.getElementById("avatar").src=data[0].avatar;
+      document.getElementById("formato").innerHTML = "Formato: ";
+      document.getElementById("formato").innerHTML += " - "+data[0].formato;
+      document.getElementById("paises").innerHTML = "Pais: " + data[0].country;
+      document.getElementById("provincias").innerHTML = "Provincia: " + data[0].province ;
+      document.getElementById("ciudades").innerHTML = "Ciudad: " + data[0].city ;
     }
-  document.getElementById("paises").innerHTML = "Pais: " + data.user.pais;
-  document.getElementById("provincias").innerHTML = "Provincia: " + data.user.provincia ;
-  document.getElementById("ciudades").innerHTML = "Ciudad: " + data.user.ciudad ;
-
-
-}
+    

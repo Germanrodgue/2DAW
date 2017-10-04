@@ -26,6 +26,10 @@ class photo_bll {
     public function list_photo_BLL() {
         return $this->dao->list_photo_DAO($this->db);
     }
-
-   
+    public function detail_photo_BLL($id) {
+        return $this->dao->detail_photo_DAO($this->db, $id);
+    }
+    public function list_photo_BLL_limit($no) {
+        return $this->dao->list_photo_DAO_limit($this->db, $no);
+    }
 }

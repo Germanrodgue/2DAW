@@ -36,17 +36,17 @@
 									<?php
 								} else {
 									?>
-										<li  class="current" ><a href="index.php?module=homepage">Home</a></li>
+										<li  ><a href="index.php?module=homepage">Home</a></li>
 
 										<li><a href="index.php?module=photos_backend&view=create_photos">Formulario</a></li>
 
-										<li ><a href="index.php?module=photos_frontend&view=list_photos">List</a></li>
+										<li class="current"><a href="index.php?module=photos_frontend&view=list_photos">List</a></li>
 
 									<?php
 
 								}
 						}
-
+0
 						?>
 						</ul>
 					</nav>

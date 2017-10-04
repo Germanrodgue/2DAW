@@ -324,7 +324,7 @@ function validate_photos() {
         };
 
         var data_photos_JSON = JSON.stringify(data);
-
+        
         $.post('module/photos_backend/controller/controller_photos.class.php', {
                 alta_photos_json: data_photos_JSON
             },

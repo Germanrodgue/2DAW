@@ -21,6 +21,10 @@ class photo_model {
     public function list_photo() {
         return $this->bll->list_photo_BLL();
     }
-
-
+    public function detail_photo($id) {
+        return $this->bll->detail_photo_BLL($id);
+    }
+    public function list_photo_limit($no) {
+        return $this->bll->list_photo_BLL_limit($no);
+    }
 }

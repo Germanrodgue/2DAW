@@ -14,12 +14,32 @@ class photoDAO {
 
     public function list_photo_DAO($db) {
        
-            $sql = "SELECT * FROM fotografia";
+            $sql = "SELECT * FROM fotografia limit 10";
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
             
     
     }
 
-   
+    public function detail_photo_DAO($db, $id) {
+        
+             $sql = "SELECT * FROM fotografia WHERE id=".$id;
+             $stmt = $db->ejecutar($sql);
+             return $db->listar($stmt);
+             
+     
+     }
+     public function list_photo_DAO_limit($db, $no) {
+                
+                    $no = 10+$no;
+                
+                
+             $sql = "SELECT * FROM fotografia limit ".$no.",2" ;
+             
+             $stmt = $db->ejecutar($sql);
+             return $db->listar($stmt);
+             
+     
+     }
+     
 }
