@@ -12,50 +12,51 @@ $(document).ready(function () {
 
   load_photo();
 
+});
+var timeout;
+$(window).scroll(function () {
+
+  var value = true;
+
+  clearTimeout(timeout);
+  timeout = setTimeout(function () {
+    if ($(window).scrollTop() + $(window).height() + 2 >= $(document).height()) {
+
+
+      var val = $('#list').attr('value');
+      vals = Number(val);
+
+      $.post('module/photos_frontend/controller/controller_photos.class.php?getresult=true', {
+
+        getresult: vals
+
+      }, function (response) {
+        var json = JSON.parse(response);
+
+        pintar_photo(json);
+        vali = $('#list').attr('value');
+        valis = Number(vali) + 5;
+        $("#list").attr('value', valis);
+      });
+      value = false;
+
+
+    }
+  }, 50);
+
 
 
 });
+
+
+
 $(window).scroll(function () {
-
-  /*var position = $(window).scrollTop();
-  var bottom =  $(window).height() - $(document).height();
-
-  if( position == bottom ){*/ //funciona pero del reves
-
-
-
-  //if( ($(window).scrollTop() + $(window).height() == $(document).height()   )) { problemes al mostrar els datos
-
-
-
-  var val = $('#list').attr('value');
-  alert(val);
-  $.post('module/photos_frontend/controller/controller_photos.class.php?getresult=true', {
-
-    getresult: val
-
-  }, function (response) {
-
-    var json = JSON.parse(response);
-    var ul = document.getElementById("list");
-    pintar_photo(json);
-    $("#list").attr('value', Number(val) + 2);
-
-
-
-
-  });
-
 
 });
 
 function pintar_photo(data) {
 
-
-
-
   var ul = document.getElementById("list");
-
 
   for (var i = 0; i < data.length; i++) {
 
@@ -71,8 +72,6 @@ function pintar_photo(data) {
     ul.appendChild(li);
 
   }
-
-
 
   details();
 

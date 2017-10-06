@@ -25,7 +25,7 @@
 
 
 									<?php
-								}elseif ($_GET['module']==="photos"){
+								}elseif ($_GET['module']==="photos_backend"){
 									?>
 										<li ><a href="index.php?module=homepage">Home</a></li>
 
@@ -34,7 +34,7 @@
 										<li ><a href="index.php?module=photos_frontend&view=list_photos">List</a></li>
 
 									<?php
-								} else {
+								} elseif ($_GET['module']==="photos_frontend") {
 									?>
 										<li  ><a href="index.php?module=homepage">Home</a></li>
 

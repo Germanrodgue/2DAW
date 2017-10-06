@@ -31,10 +31,9 @@ class photoDAO {
      }
      public function list_photo_DAO_limit($db, $no) {
                 
-                    $no = 10+$no;
+             $no = 10+$no;
                 
-                
-             $sql = "SELECT * FROM fotografia limit ".$no.",2" ;
+             $sql = "SELECT * FROM fotografia limit ".$no.",5" ;
              
              $stmt = $db->ejecutar($sql);
              return $db->listar($stmt);
