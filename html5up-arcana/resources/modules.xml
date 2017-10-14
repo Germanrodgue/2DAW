@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modules>
+    <module>
+        <name>homepage</name>
+        <uri>homepage</uri>
+    </module>
+    <module>
+        <name>photosbackend</name>
+        <uri>photosbackend</uri>
+    </module>
+    <module>
+        <name>photosfrontend</name>
+        <uri>photosfrontend</uri>
+    </module>
+</modules>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>list_photos</name>
+        <uri>list_photos</uri>
+    </function>
+    <function>
+        <name>details_photos</name>
+        <uri>details_photos</uri>
+    </function>
+    <function>
+        <name>load</name>
+        <uri>load</uri>
+    </function>
+     <function>
+        <name>load_details</name>
+        <uri>load_details</uri>
+    </function>
+      <function>
+        <name>get_result</name>
+        <uri>get_result</uri>
+    </function>
+
+     <function>
+        <name>load_detail1</name>
+        <uri>load_detail1</uri>
+    </function>
+</functions>

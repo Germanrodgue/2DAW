@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>form_photos</name>
+        <uri>form_photos</uri>
+    </function>
+    <function>
+        <name>prova</name>
+        <uri>prova</uri>
+    </function>
+    <function>
+        <name>results_photos</name>
+        <uri>results_photos</uri>
+    </function>
+
+    <function>
+        <name>upload_photos</name>
+        <uri>upload_photos</uri>
+    </function>
+
+     <function>
+        <name>alta_photos</name>
+        <uri>alta_photos</uri>
+    </function>
+
+      <function>
+        <name>delete_photos</name>
+        <uri>delete_photos</uri>
+    </function>
+
+     <function>
+        <name>load_photos</name>
+        <uri>load_photos</uri>
+    </function>
+
+    <function>
+        <name>load_data_photos</name>
+        <uri>load_data_photos</uri>
+    </function>
+    <function>
+        <name>load_pais_photos</name>
+        <uri>load_pais_photos</uri>
+    </function>
+      <function>
+        <name>load_provincia_photos</name>
+        <uri>load_provincia_photos</uri>
+    </function>
+ 
+    <function>
+        <name>load_pueblo_photos</name>
+        <uri>load_pueblo_photos</uri>
+    </function>
+</functions>
