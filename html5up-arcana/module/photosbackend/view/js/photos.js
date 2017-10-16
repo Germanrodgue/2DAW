@@ -402,11 +402,11 @@ function load_cities_v2(prov) {
 }
 
 function load_cities_v1(prov) { //provinciasypoblaciones.xml - xpath
-    var datos = { idPoblac : prov  };
-    
-    $.post("../../photosbackend/load_pueblos_photos/", {'idPoblac':Number(prov)}, 
+   
+    provs=Number(prov);
+    $.post("../../photosbackend/load_pueblo_photos/", {'idPoblac': provs}, 
     function(response) {
-	    alert(response);
+	    
         var json = JSON.parse(response);
 		var ciudad=json.ciudad;
 		//alert(poblaciones);

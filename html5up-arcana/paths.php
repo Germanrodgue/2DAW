@@ -52,3 +52,10 @@ define('MODEL_PHOTOS_F', SITE_ROOT . 'module/photosfrontend/model/model/');
 
 //amigables
 define('URL_AMIGABLES', TRUE);
+
+//module contact
+define('CONTACT_JS_PATH', SITE_PATH . 'module/contact/view/js/');
+define('CONTACT_CSS_PATH', SITE_PATH . 'module/contact/view/css/');
+define('CONTACT_LIB_PATH', SITE_PATH . 'module/contact/view/lib/');
+define('CONTACT_IMG_PATH', SITE_PATH . 'module/contact/view/img/'); 
+define('CONTACT_VIEW_PATH', 'module/contact/view/');

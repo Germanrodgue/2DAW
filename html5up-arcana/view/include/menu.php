@@ -22,6 +22,7 @@
 
 										<li ><a href="<?php amigable('?module=photosfrontend&function=list_photos');?>">List</a></li>
 
+										<li><a href="<?php amigable('?module=contact&function=contact');?>">Contact</a></li>
 
 
 									<?php
@@ -33,6 +34,7 @@
 
 										<li ><a href="<?php amigable('?module=photosfrontend&function=list_photos');?>">List</a></li>
 
+										<li><a href="<?php amigable('?module=contact&function=contact');?>">Contact</a></li>
 									<?php
 								} elseif ($_GET['module']==="photosfrontend") {
 									?>
@@ -41,6 +43,19 @@
 										<li><a href="<?php amigable('?module=photosbackend&function=form_photos');?>">Formulario</a></li>
 
 										<li class="current"><a href="<?php amigable('?module=photosfrontend&function=list_photos');?>">List</a></li>
+
+										<li><a href="<?php amigable('?module=contact&function=contact');?>">Contact</a></li>
+									<?php
+
+								} elseif ($_GET['module']==="contact") {
+									?>
+										<li  ><a href="<?php amigable('?module=homepage');?>">Home</a></li>
+
+										<li><a href="<?php amigable('?module=photosbackend&function=form_photos');?>">Formulario</a></li>
+
+										<li><a href="<?php amigable('?module=photosfrontend&function=list_photos');?>">List</a></li>
+
+										<li class="current"><a href="<?php amigable('?module=contact&function=contact');?>">Contact</a></li>
 
 									<?php
 
