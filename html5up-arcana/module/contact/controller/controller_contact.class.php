@@ -1,5 +1,6 @@
 
 <?php   
+
     class controller_contact { 
         
         public function __construct() {
@@ -8,7 +9,7 @@
 
         public function contact() {
             require_once(VIEW_PATH_INC."header.php"); 
-            require_once(VIEW_PATH_INC . "top_page.php");
+            require_once(VIEW_PATH_INC."top_page.php");
 			require_once(VIEW_PATH_INC."menu.php");
             
             loadView(CONTACT_VIEW_PATH, 'contact.php');
@@ -17,46 +18,16 @@
         }
         
         public function send_contact() {
-            if($_POST['token'] === "contact_form"){
-                
-                //////////////// Envio del correo al usuario
-                $arrArgument = array(
-									'type' => 'contact',
-									'token' => '',
-									'inputName' => $_POST['inputName'],
-									'inputEmail' => $_POST['inputEmail'],
-									'inputSubject' => $_POST['inputSubject'],
-									'inputMessage' => $_POST['inputMessage']
-								);
-				set_error_handler('ErrorHandler');
-				try{
-                    echo "<div class='alert alert-success'>".enviar_email($arrArgument)." </div>";
-				} catch (Exception $e) {
-					echo "<div class='alert alert-error'>Server error. Try later...</div>";
-				}
-				restore_error_handler();
-                
-                
-                //////////////// Envio del correo al admin de la web
-                $arrArgument = array(
-									'type' => 'admin',
-									'token' => '',
-									'inputName' => $_POST['inputName'],
-									'inputEmail' => $_POST['inputEmail'],
-									'inputSubject' => $_POST['inputSubject'],
-									'inputMessage' => $_POST['inputMessage']
-								);
-                set_error_handler('ErrorHandler');
-				try{
-                    sleep(5);
-                    echo "<div class='alert alert-success'>".enviar_email($arrArgument)." </div>";
-				} catch (Exception $e) {
-					echo "<div class='alert alert-error'>Server error. Try later...</div>";
-				}
-				restore_error_handler();
+			require_once(EMAIL_CLASSES."email.inc.php");
+			if ((isset($_POST['alta_photos_json']))) {
+				echo "a";
+			};
+			/*$json = array();
 				
-            }else{
-                echo "<div class='alert alert-error'>Server error. Try later...</div>";
-            }
+			$json = $_POST['data'];*/
+			send_mailgun($_GET['data']);
+			
+		//	echo json_encode($_POST['data']);
+			
         }
     }

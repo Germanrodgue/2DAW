@@ -59,3 +59,7 @@ define('CONTACT_CSS_PATH', SITE_PATH . 'module/contact/view/css/');
 define('CONTACT_LIB_PATH', SITE_PATH . 'module/contact/view/lib/');
 define('CONTACT_IMG_PATH', SITE_PATH . 'module/contact/view/img/'); 
 define('CONTACT_VIEW_PATH', 'module/contact/view/');
+
+//classes
+
+define('EMAIL_CLASSES', SITE_ROOT . 'classes/email/');

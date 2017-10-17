@@ -1,45 +1,34 @@
 <br><br><br><br><br><br><br><br><br>
 
-<script src="<?php echo CONTACT_LIB_PATH; ?>bootstrap-button.js"></script>
-<script src="<?php echo CONTACT_LIB_PATH; ?>jquery.validate.min.js"></script>
-<script src="<?php echo CONTACT_LIB_PATH; ?>jquery.validate.extended.js"></script>
-<script src="<?php echo CONTACT_JS_PATH; ?>contact.js"></script>
 
-<link href="<?php echo CONTACT_CSS_PATH; ?>bootstrap.min.css" rel="stylesheet">
-<link href="<?php echo CONTACT_CSS_PATH; ?>custom.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo CONTACT_JS_PATH ?>contact.js"></script>
+
+
+
 
 <div class="container">
-    <form id="contact_form" name="contact_form" class="form-contact">
-        <h2 class="form-contact-heading">Contact Us</h2>
-        
-        <div class="control-group">
-            <input type="text" id="inputName" name="inputName" placeholder="Name" class="input-block-level" dir="auto" maxlength="100">
-        </div>
-        <div class="control-group">
-            <input type="text" id="inputEmail" name="inputEmail" placeholder="Email *" class="input-block-level" maxlength="100">
-        </div>
-        <div class="control-group">
-            <label for="sel1">Subject</label>
-            <select class="form-control" id="inputSubject" name="inputSubject" title="Choose subject">
-                <option value="compra">Informacion sobre una fotografia</option>
-                <option value="evento">Celebra un evento con nosotros</option>
-                <option value="Trabaja">Trabaja con nosotros</option>
-                <option value="sugerencias">Haznos sugerencias</option>
-                <option value="reclamaciones">Reclamaciones</option>
-                <option value="diferente">Algo diferente</option>
-            </select>
-        </div>
-        <div class="control-group">
-              <textarea class="input-block-level" rows="4" name="inputMessage" placeholder="Message *" style="max-width: 100%;" dir="auto"></textarea>
-        </div>
-        
-        <input type="hidden" name="token" value="contact_form" />
-        
-        <input class="btn btn-primary" type="submit" name="submit" id="submitBtn" disabled="disabled" value="send" />
-        
-        <img src="<?php echo CONTACT_IMG_PATH; ?>ajax-loader.gif" alt="ajax loader icon" class="ajaxLoader" /><br/><br/>
-          
-        <div id="resultMessage" style="display: none;"></div>
-    </form>
+<form id="contact">
+
+<label for="name" id="name_label">Name *</label>
+<label class="error" for="name" id="name_error">this field is required</label>
+<br /> <input type="text" name="name" id="name" value="" class="text-input" placeholder="How should I call you?" />
+
+
+<br />
+<label for="email" id="email_label">E-Mail *</label>
+<label class="error" for="email" id="email_error">this field is required</label>
+<label class="error" for="email" id="email_invalid_error">please insert a valid email</label>
+<br /> <input type="email" name="email" id="email" value="" class="text-input" placeholder="How can I reach you?" />
+
+
+<br />
+<label for="message">Message *</label>
+<label class="error" for="message" id="message_error">this field is required</label>
+<br /> <textarea name="message" id="message" rows="8" class="text-input" placeholder="What would you like to tell me?"></textarea>
+
+
+<br />
+<input name="submit" id="submit" value="Send me Mail!" type="submit" class="subbutton">
+
+</form>
 </div> <!-- /container -->
