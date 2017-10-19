@@ -1,6 +1,5 @@
 
 <?php   
-
     class controller_contact { 
         
         public function __construct() {
@@ -17,17 +16,28 @@
             require_once(VIEW_PATH_INC."footer.php");
         }
         
-        public function send_contact() {
-			require_once(EMAIL_CLASSES."email.inc.php");
-			if ((isset($_POST['alta_photos_json']))) {
-				echo "a";
-			};
-			/*$json = array();
-				
-			$json = $_POST['data'];*/
-			send_mailgun($_GET['data']);
-			
-		//	echo json_encode($_POST['data']);
-			
+         function send_contact() {
+            require_once(EMAIL_CLASSES."email.inc.php"); 
+            if ($_POST['token'] === "contact_form") {
+
+               $arrArgument = array(
+                'type' => 'contact',
+                'token' => '',
+                'inputName' => $_POST['inputName'],
+                'inputEmail' => $_POST['inputEmail']
+            );
+           
+           
+           
+            try {
+                sleep(2);
+                echo "<div class='alert alert-success'>". send_mailgun($arrArgument). "</div>";
+            } catch( Exception $e){
+                echo "<div class='alert alert-error'>Server error. Try later...</div>";
+            }
+             
+            }
         }
+
+      
     }
